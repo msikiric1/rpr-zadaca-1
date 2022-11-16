@@ -4,17 +4,33 @@ import java.util.Stack;
 
 /**
  * @author Muaz Sikiric
+ * @version 0.1
  */
 public class ExpressionEvaluator {
     /**
      * Evaluates given expression and returns final value if it can be calculated
-     * @param expression
+     * @param expression string expression that should be validated and evaluated
      * @return value
      */
     public Double evaluate(String expression) {
         Stack<Double> operands = new Stack<>();
         Stack<Character> operators = new Stack<>();
+        boolean shouldBeSpace = false, hasNumberToAdd = false;
+        Double number = 0.;
+        for(Character c : expression.toCharArray()) {
+            if("*/+-%".indexOf(c) != -1) {
+                operators.push(c);
+            } else if(Character.isDigit(c)) {
+                number = number * 10 + Character.getNumericValue(c);
+                hasNumberToAdd = true;
+            } else if(hasNumberToAdd && c.equals(' ')) {
+                operands.push(number);
+                hasNumberToAdd = false;
+                number = 0.;
+            } else if(c.equals(')')) {
 
+            }
+        }
         return operands.pop();
     }
 }
