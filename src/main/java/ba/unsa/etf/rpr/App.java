@@ -11,8 +11,18 @@ public class App {
      * @param args input arguments from console
      */
     public static void main( String[] args ) {
-        ExpressionEvaluator evaluator = new ExpressionEvaluator();
-        double result = evaluator.evaluate("( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )");
-        System.out.println(result);
+        if(args.length == 0)
+            System.out.println("Niste unijeli dovoljan broj argumenata!");
+        else if(args.length > 1)
+            System.out.println("Unijeli ste previše argumenata!");
+        else {
+            try {
+                ExpressionEvaluator ee = new ExpressionEvaluator();
+                double result = ee.evaluate(args[0]);
+                System.out.println(args[0] + " = " + result);
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }
 }
