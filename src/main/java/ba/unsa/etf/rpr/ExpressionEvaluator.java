@@ -49,7 +49,7 @@ public class ExpressionEvaluator {
      * @param b second number
      * @return value that is equal to a 'operator' b
      */
-    private Double expressionToValue(String operator, Double a, Double b) {
+    private Double expressionToValue(String operator, Double a, Double b) throws IllegalArgumentException {
         switch(operator) {
             case "+": return a + b;
             case "-": return a - b;
