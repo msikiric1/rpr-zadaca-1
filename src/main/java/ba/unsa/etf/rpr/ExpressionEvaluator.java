@@ -19,7 +19,7 @@ public class ExpressionEvaluator {
         for(String s : expression.split(" ")) {
             if((s.length() == 1 && "*/+-".contains(s)) || s.equals("sqrt")) {
                 operators.push(s);
-            } else if(s.equals(')')) {
+            } else if(s.equals(Character.toString(')'))) {
                 try {
                     String operator = operators.pop();
                     if(operator == "sqrt")
