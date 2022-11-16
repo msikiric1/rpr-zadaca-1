@@ -46,4 +46,13 @@ public class ExpressionEvaluatorTest
         String input = "( 5 * ( 2 / 0 ) )";
         assertThrows(IllegalArgumentException.class, () -> ee.evaluate(input));
     }
+
+    /**
+     * Not surrounded by parentheses test
+     */
+    @Test
+    public void notSurroundedByParentheses() {
+        String input = "1 + 2 + 3 + 4 + 5";
+        assertThrows(RuntimeException.class, () -> ee.evaluate(input));
+    }
 }
