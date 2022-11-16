@@ -13,13 +13,14 @@ public class ExpressionEvaluator {
      * @param expression string expression that should be validated and evaluated
      * @return value
      */
-    public Double evaluate(String expression) {
+    public Double evaluate(String expression) throws RuntimeException {
         Stack<Double> operands = new Stack<>();
         Stack<String> operators = new Stack<>();
         for(String s : expression.split(" ")) {
-            if((s.length() == 1 && "*/+-".contains(s)) || s.equals("sqrt")) {
+            if(s.equals("(")) {}
+            else if((s.length() == 1 && "*/+-".contains(s)) || s.equals("sqrt")) {
                 operators.push(s);
-            } else if(s.equals(Character.toString(')'))) {
+            } else if(s.equals(")")) {
                 try {
                     String operator = operators.pop();
                     if(operator == "sqrt")
@@ -30,7 +31,12 @@ public class ExpressionEvaluator {
                     throw new RuntimeException("Izraz nije aritmetički validan!");
                 }
             } else {
-
+                // checking if string can be parsed to double
+                try {
+                    operands.push(Double.parseDouble(s));
+                } catch(NumberFormatException e) {
+                    throw new RuntimeException("Izraz nije aritmetički validan!");
+                }
             }
         }
         return operands.pop();
