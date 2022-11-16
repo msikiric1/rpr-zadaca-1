@@ -18,8 +18,11 @@ public class ExpressionEvaluator {
         boolean shouldBeSpace = false, hasNumberToAdd = false;
         Double number = 0.;
         for(Character c : expression.toCharArray()) {
-            if("*/+-%".indexOf(c) != -1) {
+            if("*/+-".indexOf(c) != -1) {
                 operators.push(c);
+            } else if(c.equals('s')) {
+                // TODO
+                operators.push('s');
             } else if(Character.isDigit(c)) {
                 number = number * 10 + Character.getNumericValue(c);
                 hasNumberToAdd = true;
@@ -32,5 +35,24 @@ public class ExpressionEvaluator {
             }
         }
         return operands.pop();
+    }
+
+    /**
+     * Calculates result of a 'operator' b (assumes that 'operator' is a valid operator)
+     * @param operator operator
+     * @param a first number
+     * @param b second number
+     * @return value that is equal to a 'operator' b
+     */
+    private Double expressionToValue(Character operator, Double a, Double b) {
+        switch(operator) {
+            case '+': return a + b;
+            case '-': return a - b;
+            case '*': return a * b;
+            case '/':
+                if(b == 0) throw new IllegalArgumentException("Zabranjeno je dijeljenje nulom!");
+                return a / b;
+        }
+        return null;
     }
 }
