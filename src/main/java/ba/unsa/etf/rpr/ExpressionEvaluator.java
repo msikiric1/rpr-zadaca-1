@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
@@ -14,23 +15,21 @@ public class ExpressionEvaluator {
      */
     public Double evaluate(String expression) {
         Stack<Double> operands = new Stack<>();
-        Stack<Character> operators = new Stack<>();
-        boolean shouldBeSpace = false, hasNumberToAdd = false;
-        Double number = 0.;
-        for(Character c : expression.toCharArray()) {
-            if("*/+-".indexOf(c) != -1) {
-                operators.push(c);
-            } else if(c.equals('s')) {
-                // TODO
-                operators.push('s');
-            } else if(Character.isDigit(c)) {
-                number = number * 10 + Character.getNumericValue(c);
-                hasNumberToAdd = true;
-            } else if(hasNumberToAdd && c.equals(' ')) {
-                operands.push(number);
-                hasNumberToAdd = false;
-                number = 0.;
-            } else if(c.equals(')')) {
+        Stack<String> operators = new Stack<>();
+        for(String s : expression.split(" ")) {
+            if((s.length() == 1 && "*/+-".contains(s)) || s.equals("sqrt")) {
+                operators.push(s);
+            } else if(s.equals(')')) {
+                try {
+                    String operator = operators.pop();
+                    if(operator == "sqrt")
+                        operands.push(Math.sqrt(operands.pop()));
+                    else
+                        operands.push(expressionToValue(operator, operands.pop(), operands.pop()));
+                } catch(EmptyStackException e) {
+                    throw new RuntimeException("Izraz nije aritmetički validan!");
+                }
+            } else {
 
             }
         }
