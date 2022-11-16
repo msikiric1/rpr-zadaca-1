@@ -44,12 +44,12 @@ public class ExpressionEvaluator {
      * @param b second number
      * @return value that is equal to a 'operator' b
      */
-    private Double expressionToValue(Character operator, Double a, Double b) {
+    private Double expressionToValue(String operator, Double a, Double b) {
         switch(operator) {
-            case '+': return a + b;
-            case '-': return a - b;
-            case '*': return a * b;
-            case '/':
+            case "+": return a + b;
+            case "-": return a - b;
+            case "*": return a * b;
+            case "/":
                 if(b == 0) throw new IllegalArgumentException("Zabranjeno je dijeljenje nulom!");
                 return a / b;
         }
