@@ -23,10 +23,11 @@ public class ExpressionEvaluator {
             } else if(s.equals(")")) {
                 try {
                     String operator = operators.pop();
+                    Double operand = operands.pop();
                     if(operator == "sqrt")
-                        operands.push(Math.sqrt(operands.pop()));
+                        operands.push(Math.sqrt(operand));
                     else
-                        operands.push(expressionToValue(operator, operands.pop(), operands.pop()));
+                        operands.push(expressionToValue(operator, operands.pop(), operand));
                 } catch(EmptyStackException e) {
                     throw new RuntimeException("Izraz nije aritmetički validan!");
                 }
