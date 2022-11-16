@@ -16,6 +16,8 @@ public class ExpressionEvaluator {
     public Double evaluate(String expression) throws RuntimeException {
         Stack<Double> operands = new Stack<>();
         Stack<String> operators = new Stack<>();
+        if(!checkIfSurroundedByParentheses(expression))
+            throw new RuntimeException("Izraz nije okružen zagradama!");
         for(String s : expression.split(" ")) {
             if(s.equals("(")) {}
             else if((s.length() == 1 && "*/+-".contains(s)) || s.equals("sqrt")) {
@@ -24,7 +26,7 @@ public class ExpressionEvaluator {
                 try {
                     String operator = operators.pop();
                     Double operand = operands.pop();
-                    if(operator == "sqrt")
+                    if(operator.equals("sqrt"))
                         operands.push(Math.sqrt(operand));
                     else
                         operands.push(expressionToValue(operator, operands.pop(), operand));
@@ -56,9 +58,15 @@ public class ExpressionEvaluator {
             case "-": return a - b;
             case "*": return a * b;
             case "/":
-                if(b == 0) throw new IllegalArgumentException("Zabranjeno je dijeljenje nulom!");
+                if(b == 0)
+                    throw new IllegalArgumentException("Zabranjeno je dijeljenje nulom!");
                 return a / b;
         }
         return null;
+    }
+
+    private boolean checkIfSurroundedByParentheses(String s) {
+        s.trim();
+        return s.charAt(0) == '(' && s.charAt(s.length() - 1) == ')';
     }
 }
