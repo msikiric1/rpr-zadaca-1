@@ -30,6 +30,15 @@ public class ExpressionEvaluatorTest
     }
 
     /**
+     * Sqrt operator test
+     */
+    @Test
+    public void sqrt() {
+        String input = "( ( sqrt ( 49 ) * sqrt ( 121 ) ) / sqrt ( 4 ) )";
+        assertEquals(38.5, ee.evaluate(input));
+    }
+
+    /**
      * Division by zero test
      */
     @Test
