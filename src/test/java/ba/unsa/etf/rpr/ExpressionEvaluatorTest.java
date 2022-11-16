@@ -28,4 +28,13 @@ public class ExpressionEvaluatorTest
         String input = "( ( ( 1 + 8 ) / 2 ) * ( 2 - ( 0.5 * 7 ) ) )";
         assertEquals(-6.75, ee.evaluate(input));
     }
+
+    /**
+     * Division by zero test
+     */
+    @Test
+    public void divisionByZero() {
+        String input = "( 5 * ( 2 / 0 ) )";
+        assertThrows(IllegalArgumentException.class, () -> ee.evaluate(input));
+    }
 }
