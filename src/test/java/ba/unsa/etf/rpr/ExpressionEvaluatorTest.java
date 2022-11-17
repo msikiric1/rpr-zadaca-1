@@ -30,6 +30,15 @@ public class ExpressionEvaluatorTest
     }
 
     /**
+     * Test 3
+     */
+    @Test
+    public void evaluate3() {
+        String input = "( ( sqrt ( 18 / 2 ) ) * ( ( 3 + 2 ) - 1 ) )";
+        assertEquals(12, ee.evaluate(input));
+    }
+
+    /**
      * Sqrt operator test
      */
     @Test
