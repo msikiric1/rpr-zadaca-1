@@ -4,6 +4,7 @@ import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
+ * Class with single public method 'evaluate' that validates and returns result of a string expression
  * @author Muaz Sikiric
  * @version 0.1
  */
@@ -11,13 +12,12 @@ public class ExpressionEvaluator {
     /**
      * Evaluates given expression and returns final value if it can be calculated
      * @param expression string expression that should be validated and evaluated
-     * @return value
+     * @return value result of an expression, if valid
      */
     public Double evaluate(String expression) throws RuntimeException {
         Stack<Double> operands = new Stack<>();
         Stack<String> operators = new Stack<>();
-        if(!checkIfSurroundedByParentheses(expression))
-            throw new RuntimeException("Izraz nije okružen zagradama!");
+        checkIfSurroundedByParentheses(expression);
         for(String s : expression.split(" ")) {
             if(s.equals("(")) {}
             else if((s.length() == 1 && "*/+-".contains(s)) || s.equals("sqrt")) {
@@ -65,8 +65,9 @@ public class ExpressionEvaluator {
         return null;
     }
 
-    private boolean checkIfSurroundedByParentheses(String s) {
-        s.trim();
-        return s.charAt(0) == '(' && s.charAt(s.length() - 1) == ')';
+    private void checkIfSurroundedByParentheses(String s) throws RuntimeException {
+        s = s.trim();
+        if(!(s.charAt(0) == '(' && s.charAt(s.length() - 1) == ')'))
+            throw new RuntimeException("Izraz nije okružen zagradama!");
     }
 }
