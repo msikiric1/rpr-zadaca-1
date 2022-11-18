@@ -12,7 +12,7 @@ public class ExpressionEvaluatorTest
 {
     ExpressionEvaluator ee = new ExpressionEvaluator();
     /**
-     * Test 1
+     * Integer expression test
      */
     @Test
     public void evaluate1() {
@@ -21,7 +21,7 @@ public class ExpressionEvaluatorTest
     }
 
     /**
-     * Test 2
+     * Integer and double expression test
      */
     @Test
     public void evaluate2() {
@@ -30,7 +30,7 @@ public class ExpressionEvaluatorTest
     }
 
     /**
-     * Test 3
+     * Expression inside sqrt operator test
      */
     @Test
     public void evaluate3() {
@@ -62,6 +62,15 @@ public class ExpressionEvaluatorTest
     @Test
     public void notSurroundedByParentheses() {
         String input = "1 + 2 + 3 + 4 + 5";
+        assertThrows(RuntimeException.class, () -> ee.evaluate(input));
+    }
+
+    /**
+     * Invalid character test
+     */
+    @Test
+    public void invalidCharacter() {
+        String input = "( 1.7 + ( 25 % 5 ) )";
         assertThrows(RuntimeException.class, () -> ee.evaluate(input));
     }
 }
