@@ -57,6 +57,15 @@ public class ExpressionEvaluatorTest
     }
 
     /**
+     * Extra parentheses test
+     */
+    @Test
+    public void extraParentheses() {
+        String input = "( ( 12 * 3.5 ) + ( 2.1 / 2 ) ) )";
+        assertThrows(RuntimeException.class, () -> ee.evaluate(input));
+    }
+
+    /**
      * Sqrt operator test
      */
     @Test
