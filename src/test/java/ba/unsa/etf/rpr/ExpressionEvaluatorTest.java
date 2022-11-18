@@ -34,7 +34,7 @@ public class ExpressionEvaluatorTest
      */
     @Test
     public void evaluate3() {
-        String input = "( ( sqrt ( 18 / 2 ) ) * ( ( 3 + 2 ) - 1 ) )";
+        String input = "( sqrt ( ( 18 / 2 ) ) * ( ( 3 + 2 ) - 1 ) )";
         assertEquals(12, ee.evaluate(input));
     }
 
@@ -47,6 +47,14 @@ public class ExpressionEvaluatorTest
         assertEquals(2.7775, ee.evaluate(input));
     }
 
+    /**
+     * Complex  expression test
+     */
+    @Test
+    public void evaluate5() {
+        String input = "( ( 5 / ( 100 - 123 ) ) * ( ( ( 6 * ( 5.5 - sqrt ( 225 ) ) ) * 3.14 ) + ( 42 / ( 1234 / sqrt ( ( 64 * 16 ) ) ) ) ) )";
+        assertEquals(38.67192586850821, ee.evaluate(input));
+    }
 
     /**
      * Sqrt operator test
