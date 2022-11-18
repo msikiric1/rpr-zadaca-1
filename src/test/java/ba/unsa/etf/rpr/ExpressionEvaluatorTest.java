@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 public class ExpressionEvaluatorTest
 {
     ExpressionEvaluator ee = new ExpressionEvaluator();
+
     /**
      * Integer expression test
      */
@@ -107,6 +108,15 @@ public class ExpressionEvaluatorTest
     @Test
     public void invalidCharacter() {
         String input = "( 1.7 + ( 25 % 5 ) )";
+        assertThrows(RuntimeException.class, () -> ee.evaluate(input));
+    }
+
+    /**
+     * No space between every operator and operrand test
+     */
+    @Test
+    public void noSpace() {
+        String input = "( 1 + ( 5* 20))";
         assertThrows(RuntimeException.class, () -> ee.evaluate(input));
     }
 }
