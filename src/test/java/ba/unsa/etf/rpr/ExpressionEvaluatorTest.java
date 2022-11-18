@@ -39,6 +39,16 @@ public class ExpressionEvaluatorTest
     }
 
     /**
+     * Double expression test
+     */
+    @Test
+    public void evaluate4() {
+        String input = "( ( ( 4.25 * 3.8 ) / 4 ) - ( ( 3.5 / 2.5 ) * ( 2.34 - ( 1.2 * 1.2 ) ) ) )";
+        assertEquals(2.7775, ee.evaluate(input));
+    }
+
+
+    /**
      * Sqrt operator test
      */
     @Test
