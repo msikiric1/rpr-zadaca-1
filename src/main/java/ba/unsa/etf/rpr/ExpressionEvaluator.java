@@ -42,6 +42,8 @@ public class ExpressionEvaluator {
                 }
             }
         }
+        if(operands.size() != 1 || !operators.empty())
+            throw new RuntimeException("Izraz nije aritmetički validan!");
         return operands.pop();
     }
 
