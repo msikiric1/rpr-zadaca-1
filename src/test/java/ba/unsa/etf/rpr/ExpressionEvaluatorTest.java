@@ -58,6 +58,15 @@ public class ExpressionEvaluatorTest
     }
 
     /**
+     * More operators than expected test
+     */
+    @Test
+    public void extraOperators() {
+        String input = "( ( 5 * ( 3 / - 5 ) ) + 1 )";
+        assertThrows(RuntimeException.class, () -> ee.evaluate(input));
+    }
+
+    /**
      * Division by zero test
      */
     @Test
