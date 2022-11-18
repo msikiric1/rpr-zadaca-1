@@ -65,6 +65,11 @@ public class ExpressionEvaluator {
         return null;
     }
 
+    /**
+     * Check if given string has a pair of parenthesis that surrounds everything
+     * @param s string
+     * @throws RuntimeException exception is thrown if the input string is not surrounded by parentheses
+     */
     private void checkIfSurroundedByParentheses(String s) throws RuntimeException {
         s = s.trim();
         if(!(s.charAt(0) == '(' && s.charAt(s.length() - 1) == ')'))
