@@ -6,7 +6,7 @@ import java.util.Stack;
 /**
  * Class with single public method 'evaluate' that validates and returns result of a string expression
  * @author Muaz Sikiric
- * @version 0.1
+ * @version 1.0
  */
 public class ExpressionEvaluator {
     /**

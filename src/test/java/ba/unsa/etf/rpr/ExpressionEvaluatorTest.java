@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for ExpressionEvaluator class
+ * @author Muaz Sikiric
+ * @version 1.0
  */
 public class ExpressionEvaluatorTest
 {

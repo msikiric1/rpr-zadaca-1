@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr;
 /**
  * Zadaca 1
  * @author Muaz Sikiric
- * @version 0.1
+ * @version 1.0
  */
 public class App {
     /**
