@@ -14,7 +14,7 @@ public class ExpressionEvaluator {
      * @param expression string expression that should be validated and evaluated
      * @return value result of an expression, if valid
      */
-    public Double evaluate(String expression) throws RuntimeException {
+    public Double evaluate(String expression) {
         Stack<Double> operands = new Stack<>();
         Stack<String> operators = new Stack<>();
         checkIfSurroundedByParentheses(expression);
@@ -54,7 +54,7 @@ public class ExpressionEvaluator {
      * @param b second number
      * @return value that is equal to a 'operator' b
      */
-    private Double expressionToValue(String operator, Double a, Double b) throws IllegalArgumentException {
+    private Double expressionToValue(String operator, Double a, Double b) {
         switch(operator) {
             case "+": return a + b;
             case "-": return a - b;
@@ -72,7 +72,7 @@ public class ExpressionEvaluator {
      * @param s string
      * @throws RuntimeException exception is thrown if the input string is not surrounded by parentheses
      */
-    private void checkIfSurroundedByParentheses(String s) throws RuntimeException {
+    private void checkIfSurroundedByParentheses(String s) {
         s = s.trim();
         if(!(s.charAt(0) == '(' && s.charAt(s.length() - 1) == ')'))
             throw new RuntimeException("Izraz nije okružen zagradama!");
